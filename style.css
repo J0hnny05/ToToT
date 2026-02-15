@@ -68,6 +68,26 @@ a {
     color: var(--text-color);
 }
 
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.signup-btn {
+    padding: 10px 20px;
+    background-color: var(--accent-color);
+    color: var(--white);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.cart-icon {
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
 /* HERO SECTION */
 .hero-section {
     height: 90vh;
@@ -76,10 +96,149 @@ a {
     align-items: center;
     justify-content: center;
     color: var(--white);
+    text-align: center;
 }
 
 .hero-content h1 {
     font-size: 3.5rem;
+    margin-bottom: 20px;
+}
+
+.moto {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    font-style: italic;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: var(--accent-color);
+    color: var(--white);
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+/* PRODUCTS */
+.products-container {
+    display: flex;
+    gap: 20px;
+}
+
+.product-wheel {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card {
+    width: 300px;
+    background: var(--white);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-info {
+    padding: 20px;
+}
+
+.card-info h3 {
+    margin-bottom: 10px;
+}
+
+.card-info .price {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+    color: var(--accent-color);
+    font-size: 1.2rem;
+}
+
+/* REVIEWS */
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.review-box {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.review-box p {
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
+.stars {
+    color: gold;
+    font-size: 1.2rem;
+}
+
+/* CONTACT */
+.contact-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+}
+
+.contact-info, .contact-form {
+    flex: 1 1 400px;
+}
+
+.contact-info p {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+}
+
+.contact-list {
+    list-style: none;
+    padding: 0;
+}
+
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin: 25px 0;
+}
+
+.contact-icon {
+    font-size: 1.8rem;
+}
+
+.contact-detail strong {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.contact-detail a {
+    color: var(--accent-color);
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-form input, .contact-form textarea {
+    padding: 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 1rem;
 }
 
 /* FOOTER */
