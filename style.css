@@ -3,10 +3,10 @@
 }
 
 :root {
-    --primary-color: #2c3e50;
-    --accent-color: #27ae60;
-    --accent-blue: #2980b9;
-    --bg-light: #f4f4f4;
+    --primary-color: #2c3e50; /* Dark Blue-Grey */
+    --accent-color: #27ae60;  /* Nature Green */
+    --accent-blue: #2980b9;   /* Accent Blue for active nav */
+    --bg-light: #f4f4f4;      /* Light Grey */
     --text-color: #333;
     --white: #ffffff;
     --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -55,11 +55,16 @@ a {
     border-radius: 2px;
 }
 
+
+.bg-light {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
 /* NAVBAR */
 .navbar {
     background-color: var(--white);
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    position: sticky;
+    position: sticky; /* Keeps menu at top */
     top: 0;
     z-index: 1000;
     padding: 1.2rem 0;
@@ -77,6 +82,11 @@ a {
     font-weight: bold;
     color: var(--accent-color);
     letter-spacing: 2px;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
 }
 
 .nav-links {
@@ -88,8 +98,28 @@ a {
     font-weight: 500;
     font-size: 1.1rem;
     color: var(--text-color);
+    transition: color 0.35s ease, font-size 0.35s ease, transform 0.3s ease;
     position: relative;
     text-decoration: none;
+}
+
+.nav-link:hover {
+    color: var(--accent-blue);
+    font-size: 1.25rem;
+    animation: text-grow-hover 0.35s ease-out forwards;
+}
+
+@keyframes text-grow-hover {
+    from {
+        font-size: 1.1rem;
+        color: var(--text-color);
+        transform: translateY(0);
+    }
+    to {
+        font-size: 1.25rem;
+        color: var(--accent-blue);
+        transform: translateY(-2px);
+    }
 }
 
 .nav-right {
@@ -106,13 +136,25 @@ a {
     border-radius: 25px;
     font-weight: 600;
     cursor: pointer;
+    transition: all 0.3s ease;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.signup-btn:hover {
+    background-color: var(--accent-color);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
 }
 
 .cart-icon {
     font-size: 1.8rem;
     cursor: pointer;
+    transition: transform 0.3s ease;
     position: relative;
+}
+
+.cart-icon:hover {
+    transform: scale(1.2) rotate(10deg);
 }
 
 .cart-icon::after {
@@ -131,7 +173,6 @@ a {
     font-size: 0.8rem;
     font-weight: bold;
 }
-
 /* HERO SECTION */
 .hero-section {
     height: 90vh;
@@ -148,6 +189,15 @@ a {
     border-radius: 15px;
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.hero-overlay {
+    background: rgba(0,0,0,0.4);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .hero-content h1 {
@@ -169,9 +219,15 @@ a {
     color: var(--white);
     border-radius: 5px;
     font-weight: bold;
+    transition: transform 0.2s, background 0.2s;
 }
 
-/* PRODUCT WHEEL */
+.cta-button:hover {
+    transform: translateY(-3px);
+    background-color: #219150;
+}
+
+/* PRODUCT WHEEL (Horizontal Scroll) */
 .products-container {
     display: flex;
     align-items: center;
@@ -190,18 +246,71 @@ a {
     scroll-behavior: smooth;
 }
 
+/* Hide scrollbar for Chrome/Safari */
 .product-wheel::-webkit-scrollbar {
     display: none;
 }
 
+.card:target {
+    scroll-snap-align: center;
+}
+
+.carousel-btn {
+    background-color: var(--accent-blue);
+    color: var(--white);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.carousel-btn:hover {
+    background-color: var(--accent-color);
+    transform: scale(1.1);
+}
+
+.carousel-btn:active {
+    transform: scale(0.95);
+}
+
 .card {
-    flex: 0 0 300px;
+    flex: 0 0 300px; /* Does not shrink, fixed width */
     background: var(--white);
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     scroll-snap-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
     position: relative;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s;
+    z-index: 10;
+}
+
+.card:hover {
+    transform: scale(1.05) translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+.card:hover::before {
+    left: 100%;
 }
 
 .card img {
@@ -239,8 +348,15 @@ a {
     border-radius: 8px;
     text-align: center;
     box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    transition: all 0.3s;
     border-left: 4px solid transparent;
     position: relative;
+}
+
+.review-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    border-left-color: var(--accent-blue);
 }
 
 .review-box::before {
@@ -294,13 +410,25 @@ a {
     margin: 25px 0;
     padding: 15px;
     border-radius: 8px;
+    transition: all 0.3s ease;
     background-color: var(--bg-light);
+}
+
+.contact-item:hover {
+    background-color: #e8f5e9;
+    transform: translateX(5px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 .contact-icon {
     font-size: 1.8rem;
     min-width: 40px;
     text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.contact-item:hover .contact-icon {
+    transform: scale(1.2);
 }
 
 .contact-detail {
@@ -317,7 +445,13 @@ a {
 .contact-detail a {
     color: var(--accent-blue);
     font-weight: 500;
+    transition: all 0.3s ease;
     text-decoration: none;
+}
+
+.contact-detail a:hover {
+    color: var(--accent-color);
+    text-decoration: underline;
 }
 
 .contact-detail p {
@@ -338,6 +472,14 @@ a {
     border-radius: 8px;
     font-family: inherit;
     font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.contact-form input:focus, .contact-form textarea:focus {
+    outline: none;
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 3px rgba(41, 128, 185, 0.1);
+    transform: translateY(-2px);
 }
 
 .contact-form input::placeholder, .contact-form textarea::placeholder {
@@ -354,8 +496,7 @@ footer {
 
 @media (max-width: 768px) {
     .nav-links {
-        display: none;
-    }
+        display: none;    }
     .hero-content h1 {
         font-size: 2.5rem;
     }
