@@ -164,66 +164,145 @@
         opacity: 1;
         transform: translateX(0);
       }
+
+      /* Mobile Menu */
+      .mobile-menu {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out;
+      }
+
+      .mobile-menu.active {
+        max-height: 400px;
+      }
+
+      /* Mobile-only CTA */
+      @media (min-width: 768px) {
+        .mobile-only {
+          display: none !important;
+        }
+      }
+
+      /* Adjust mascot for mobile */
+      @media (max-width: 768px) {
+        .mascot-container {
+          bottom: 1rem;
+          right: 1rem;
+        }
+
+        .mascot-float {
+          font-size: 3rem;
+        }
+
+        .mascot-tooltip {
+          min-width: 220px;
+          max-width: 260px;
+          font-size: 0.85rem;
+          padding: 1rem;
+        }
+      }
     </style>
 </head>
 <body class="bg-gradient-to-br from-white via-green-50 to-green-100 min-h-screen">
 
 <!-- NAVBAR -->
-<nav class="bg-white shadow-[0_2px_10px_rgba(0,0,0,0.1)] sticky top-0 z-[1000] py-5">
-    <div class="max-w-[1100px] mx-auto px-5 flex justify-between items-center gap-10">
-        <!-- Logo -->
-        <div class="text-3xl font-bold text-accent tracking-[2px] transition-transform duration-300 hover:scale-105 cursor-pointer">
-            ToToT
+<nav class="bg-white shadow-[0_2px_10px_rgba(0,0,0,0.1)] sticky top-0 z-[1000] py-3 md:py-5">
+    <div class="max-w-[1100px] mx-auto px-4 md:px-5">
+        <div class="flex justify-between items-center gap-4">
+            <!-- Logo -->
+            <div class="text-2xl md:text-3xl font-bold text-accent tracking-[2px] transition-transform duration-300 hover:scale-105 cursor-pointer">
+                ToToT
+            </div>
+
+            <!-- Desktop Navigation Links -->
+            <ul class="hidden md:flex gap-8">
+                <li>
+                    <a href="#hero" class="font-medium text-lg text-text-dark hover:text-accent-blue hover:scale-110 inline-block transition-all duration-300 hover:-translate-y-0.5">
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href="#products" class="font-medium text-lg text-text-dark hover:text-accent-blue hover:scale-110 inline-block transition-all duration-300 hover:-translate-y-0.5">
+                        Products
+                    </a>
+                </li>
+                <li>
+                    <a href="#reviews" class="font-medium text-lg text-text-dark hover:text-accent-blue hover:scale-110 inline-block transition-all duration-300 hover:-translate-y-0.5">
+                        Reviews
+                    </a>
+                </li>
+                <li>
+                    <a href="#contact" class="font-medium text-lg text-text-dark hover:text-accent-blue hover:scale-110 inline-block transition-all duration-300 hover:-translate-y-0.5">
+                        Contact
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Right Side Actions -->
+            <div class="flex items-center gap-3 md:gap-5">
+                <button class="hidden sm:block px-4 md:px-5 py-2 md:py-2.5 text-sm md:text-base bg-accent-blue text-white border-none rounded-full font-semibold cursor-pointer transition-all duration-300 shadow-md hover:bg-accent hover:-translate-y-1 hover:shadow-lg active:scale-95">
+                    Sign Up
+                </button>
+                <div class="text-2xl md:text-3xl cursor-pointer transition-transform duration-300 hover:scale-125 hover:rotate-[10deg] relative cart-badge">
+                    🛒
+                </div>
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" class="md:hidden text-3xl text-primary transition-colors hover:text-accent-blue">
+                    ☰
+                </button>
+            </div>
         </div>
 
-        <!-- Navigation Links -->
-        <ul class="hidden md:flex gap-8">
-            <li>
-                <a href="#hero" class="font-medium text-lg text-text-dark hover:text-accent-blue hover:scale-110 inline-block transition-all duration-300 hover:-translate-y-0.5">
-                    Home
-                </a>
-            </li>
-            <li>
-                <a href="#products" class="font-medium text-lg text-text-dark hover:text-accent-blue hover:scale-110 inline-block transition-all duration-300 hover:-translate-y-0.5">
-                    Products
-                </a>
-            </li>
-            <li>
-                <a href="#reviews" class="font-medium text-lg text-text-dark hover:text-accent-blue hover:scale-110 inline-block transition-all duration-300 hover:-translate-y-0.5">
-                    Reviews
-                </a>
-            </li>
-            <li>
-                <a href="#contact" class="font-medium text-lg text-text-dark hover:text-accent-blue hover:scale-110 inline-block transition-all duration-300 hover:-translate-y-0.5">
-                    Contact
-                </a>
-            </li>
-        </ul>
-
-        <!-- Right Side Actions -->
-        <div class="flex items-center gap-5">
-            <button class="px-5 py-2.5 bg-accent-blue text-white border-none rounded-full font-semibold cursor-pointer transition-all duration-300 shadow-md hover:bg-accent hover:-translate-y-1 hover:shadow-lg active:scale-95">
-                Sign Up
-            </button>
-            <div class="text-3xl cursor-pointer transition-transform duration-300 hover:scale-125 hover:rotate-[10deg] relative cart-badge">
-                🛒
-            </div>
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobileMenu" class="mobile-menu md:hidden">
+            <ul class="flex flex-col gap-4 py-4 mt-4 border-t border-gray-200">
+                <li>
+                    <a href="#hero" class="block font-medium text-base text-text-dark hover:text-accent-blue transition-colors py-2">
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href="#products" class="block font-medium text-base text-text-dark hover:text-accent-blue transition-colors py-2">
+                        Products
+                    </a>
+                </li>
+                <li>
+                    <a href="#reviews" class="block font-medium text-base text-text-dark hover:text-accent-blue transition-colors py-2">
+                        Reviews
+                    </a>
+                </li>
+                <li>
+                    <a href="#contact" class="block font-medium text-base text-text-dark hover:text-accent-blue transition-colors py-2">
+                        Contact
+                    </a>
+                </li>
+                <li class="sm:hidden">
+                    <button class="w-full px-4 py-2.5 bg-accent-blue text-white border-none rounded-full font-semibold cursor-pointer transition-all duration-300 shadow-md hover:bg-accent active:scale-95">
+                        Sign Up
+                    </button>
+                </li>
+            </ul>
         </div>
     </div>
 </nav>
 
+<!-- MOBILE-ONLY BANNER -->
+<div class="mobile-only bg-gradient-to-r from-accent to-accent-blue text-white py-3 px-4 text-center font-semibold text-sm md:text-base shadow-lg">
+    🎉 Ofertă Specială: -20% la prima comandă! Comandă acum! 📱
+</div>
+
 <!-- HERO SECTION -->
-<section id="hero" class="h-[90vh] w-[95vw] my-5 mx-auto bg-cover bg-center flex items-center justify-center text-center text-white rounded-2xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.15)] relative group" style="background-image: url('assets/dashboard.png')">
+<section id="hero" class="h-[70vh] sm:h-[80vh] md:h-[90vh] w-full sm:w-[95vw] my-0 sm:my-5 mx-auto bg-cover bg-center flex items-center justify-center text-center text-white rounded-none sm:rounded-2xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.15)] relative group" style="background-image: url('assets/dashboard.png')">
     <!-- Overlay with hover effect -->
-    <div class="w-full h-full flex items-center justify-center bg-black/40 group-hover:bg-black/50 transition-all duration-500">
+    <div class="w-full h-full flex items-center justify-center bg-black/40 group-hover:bg-black/50 transition-all duration-500 px-4">
         <div class="transform transition-all duration-700 group-hover:scale-105">
-            <h1 class="text-[3.5rem] md:text-6xl mb-5 font-bold animate-fade-in">
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-3 sm:mb-5 font-bold animate-fade-in leading-tight">
                 Redefinește-ți Terasa
             </h1>
-            <p class="text-2xl mb-8 italic opacity-90 animate-fade-in animation-delay-200">
+            <p class="text-base sm:text-lg md:text-xl lg:text-2xl mb-6 sm:mb-8 italic opacity-90 animate-fade-in animation-delay-200 px-4">
                 "Confortul sculpturat în durabilitate. Stilul stabilit în piatră."
             </p>
-            <a href="#products" class="inline-block px-8 py-3 bg-accent text-white rounded-md font-bold transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:bg-[#219150] active:scale-95">
+            <a href="#products" class="inline-block px-6 sm:px-8 py-2.5 sm:py-3 text-sm sm:text-base bg-accent text-white rounded-md font-bold transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:bg-[#219150] active:scale-95">
                 Explorează Colecția
             </a>
         </div>
@@ -231,112 +310,112 @@
 </section>
 
 <!-- PRODUCTS SECTION -->
-<section id="products" class="py-20">
-    <div class="max-w-[1100px] mx-auto px-5">
-        <h2 class="text-center text-4xl mb-12 text-primary relative pb-5 section-title-decoration">
+<section id="products" class="py-12 sm:py-16 md:py-20">
+    <div class="max-w-[1100px] mx-auto px-4 sm:px-5">
+        <h2 class="text-center text-2xl sm:text-3xl md:text-4xl mb-8 sm:mb-10 md:mb-12 text-primary relative pb-5 section-title-decoration">
             Colecția Noastră
         </h2>
 
         <!-- Product Carousel -->
-        <div class="flex items-center gap-5 relative">
+        <div class="flex items-center gap-2 sm:gap-3 md:gap-5 relative">
             <!-- Previous Button -->
-            <a href="#card-5" class="bg-accent-blue text-white border-none rounded-full w-[50px] h-[50px] text-2xl cursor-pointer transition-all duration-300 flex-shrink-0 flex items-center justify-center hover:bg-accent hover:scale-110 active:scale-95 shadow-lg hover:shadow-xl">
+            <a href="#card-5" class="hidden sm:flex bg-accent-blue text-white border-none rounded-full w-[40px] h-[40px] md:w-[50px] md:h-[50px] text-xl md:text-2xl cursor-pointer transition-all duration-300 flex-shrink-0 items-center justify-center hover:bg-accent hover:scale-110 active:scale-95 shadow-lg hover:shadow-xl">
                 ❮
             </a>
 
             <!-- Product Cards Container -->
-            <div class="flex overflow-x-auto gap-5 py-5 flex-1 scroll-smooth hide-scrollbar snap-x snap-mandatory">
+            <div class="flex overflow-x-auto gap-3 sm:gap-4 md:gap-5 py-5 flex-1 scroll-smooth hide-scrollbar snap-x snap-mandatory px-2 sm:px-0">
 
                 <!-- Card 1 -->
-                <div class="flex-[0_0_300px] bg-white rounded-xl overflow-hidden shadow-[0_5px_15px_rgba(0,0,0,0.1)] transition-all duration-300 relative snap-center hover:scale-105 hover:-translate-y-1 hover:shadow-[0_12px_25px_rgba(0,0,0,0.15)] shimmer-effect group" id="card-1">
-                    <img src="assets/catalog1.jpg" alt="Terasă din Plastic Durabil" class="w-full h-[200px] object-cover group-hover:scale-110 transition-transform duration-500">
-                    <div class="p-5">
-                        <h3 class="mb-2.5 text-xl font-semibold text-primary group-hover:text-accent-blue transition-colors">
+                <div class="flex-[0_0_260px] sm:flex-[0_0_280px] md:flex-[0_0_300px] bg-white rounded-xl overflow-hidden shadow-[0_5px_15px_rgba(0,0,0,0.1)] transition-all duration-300 relative snap-center hover:scale-105 hover:-translate-y-1 hover:shadow-[0_12px_25px_rgba(0,0,0,0.15)] shimmer-effect group" id="card-1">
+                    <img src="assets/catalog1.jpg" alt="Terasă din Plastic Durabil" class="w-full h-[180px] sm:h-[200px] object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="p-4 sm:p-5">
+                        <h3 class="mb-2 sm:mb-2.5 text-lg sm:text-xl font-semibold text-primary group-hover:text-accent-blue transition-colors">
                             Cocoonul Clasic
                         </h3>
-                        <p class="text-gray-600 mb-3">
+                        <p class="text-gray-600 mb-2 sm:mb-3 text-sm sm:text-base">
                             Terasă durabilă și rezistentă la intemperii pentru case moderne.
                         </p>
-                        <span class="block mt-4 font-bold text-accent text-xl">
+                        <span class="block mt-3 sm:mt-4 font-bold text-accent text-lg sm:text-xl">
                             3000 Lei
                         </span>
-                        <button class="w-full mt-4 px-4 py-2 bg-accent-blue text-white rounded-lg font-semibold hover:bg-accent transition-all duration-300 hover:shadow-lg active:scale-95">
+                        <button class="w-full mt-3 sm:mt-4 px-3 sm:px-4 py-2 text-sm sm:text-base bg-accent-blue text-white rounded-lg font-semibold hover:bg-accent transition-all duration-300 hover:shadow-lg active:scale-95">
                             Adaugă în Coș
                         </button>
                     </div>
                 </div>
 
                 <!-- Card 2 -->
-                <div class="flex-[0_0_300px] bg-white rounded-xl overflow-hidden shadow-[0_5px_15px_rgba(0,0,0,0.1)] transition-all duration-300 relative snap-center hover:scale-105 hover:-translate-y-1 hover:shadow-[0_12px_25px_rgba(0,0,0,0.15)] shimmer-effect group" id="card-2">
-                    <img src="assets/catalog2.jpg" alt="Scaun Modern din Plastic" class="w-full h-[200px] object-cover group-hover:scale-110 transition-transform duration-500">
-                    <div class="p-5">
-                        <h3 class="mb-2.5 text-xl font-semibold text-primary group-hover:text-accent-blue transition-colors">
+                <div class="flex-[0_0_260px] sm:flex-[0_0_280px] md:flex-[0_0_300px] bg-white rounded-xl overflow-hidden shadow-[0_5px_15px_rgba(0,0,0,0.1)] transition-all duration-300 relative snap-center hover:scale-105 hover:-translate-y-1 hover:shadow-[0_12px_25px_rgba(0,0,0,0.15)] shimmer-effect group" id="card-2">
+                    <img src="assets/catalog2.jpg" alt="Scaun Modern din Plastic" class="w-full h-[180px] sm:h-[200px] object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="p-4 sm:p-5">
+                        <h3 class="mb-2 sm:mb-2.5 text-lg sm:text-xl font-semibold text-primary group-hover:text-accent-blue transition-colors">
                             Cocoonul Îmbunătățit
                         </h3>
-                        <p class="text-gray-600 mb-3">
+                        <p class="text-gray-600 mb-2 sm:mb-3 text-sm sm:text-base">
                             Design ergonomic din plastic 100% reciclat.
                         </p>
-                        <span class="block mt-4 font-bold text-accent text-xl">
+                        <span class="block mt-3 sm:mt-4 font-bold text-accent text-lg sm:text-xl">
                             4500 Lei
                         </span>
-                        <button class="w-full mt-4 px-4 py-2 bg-accent-blue text-white rounded-lg font-semibold hover:bg-accent transition-all duration-300 hover:shadow-lg active:scale-95">
+                        <button class="w-full mt-3 sm:mt-4 px-3 sm:px-4 py-2 text-sm sm:text-base bg-accent-blue text-white rounded-lg font-semibold hover:bg-accent transition-all duration-300 hover:shadow-lg active:scale-95">
                             Adaugă în Coș
                         </button>
                     </div>
                 </div>
 
                 <!-- Card 3 -->
-                <div class="flex-[0_0_300px] bg-white rounded-xl overflow-hidden shadow-[0_5px_15px_rgba(0,0,0,0.1)] transition-all duration-300 relative snap-center hover:scale-105 hover:-translate-y-1 hover:shadow-[0_12px_25px_rgba(0,0,0,0.15)] shimmer-effect group" id="card-3">
-                    <img src="assets/catalog3.jpg" alt="Masă de Grădină din Plastic" class="w-full h-[200px] object-cover group-hover:scale-110 transition-transform duration-500">
-                    <div class="p-5">
-                        <h3 class="mb-2.5 text-xl font-semibold text-primary group-hover:text-accent-blue transition-colors">
+                <div class="flex-[0_0_260px] sm:flex-[0_0_280px] md:flex-[0_0_300px] bg-white rounded-xl overflow-hidden shadow-[0_5px_15px_rgba(0,0,0,0.1)] transition-all duration-300 relative snap-center hover:scale-105 hover:-translate-y-1 hover:shadow-[0_12px_25px_rgba(0,0,0,0.15)] shimmer-effect group" id="card-3">
+                    <img src="assets/catalog3.jpg" alt="Masă de Grădină din Plastic" class="w-full h-[180px] sm:h-[200px] object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="p-4 sm:p-5">
+                        <h3 class="mb-2 sm:mb-2.5 text-lg sm:text-xl font-semibold text-primary group-hover:text-accent-blue transition-colors">
                             Set Canapea Patio din Plastic
                         </h3>
-                        <p class="text-gray-600 mb-3">
+                        <p class="text-gray-600 mb-2 sm:mb-3 text-sm sm:text-base">
                             Ușoară, robustă și ușor de curățat.
                         </p>
-                        <span class="block mt-4 font-bold text-accent text-xl">
+                        <span class="block mt-3 sm:mt-4 font-bold text-accent text-lg sm:text-xl">
                             7500 Lei
                         </span>
-                        <button class="w-full mt-4 px-4 py-2 bg-accent-blue text-white rounded-lg font-semibold hover:bg-accent transition-all duration-300 hover:shadow-lg active:scale-95">
+                        <button class="w-full mt-3 sm:mt-4 px-3 sm:px-4 py-2 text-sm sm:text-base bg-accent-blue text-white rounded-lg font-semibold hover:bg-accent transition-all duration-300 hover:shadow-lg active:scale-95">
                             Adaugă în Coș
                         </button>
                     </div>
                 </div>
 
                 <!-- Card 4 -->
-                <div class="flex-[0_0_300px] bg-white rounded-xl overflow-hidden shadow-[0_5px_15px_rgba(0,0,0,0.1)] transition-all duration-300 relative snap-center hover:scale-105 hover:-translate-y-1 hover:shadow-[0_12px_25px_rgba(0,0,0,0.15)] shimmer-effect group" id="card-4">
-                    <img src="assets/catalog5.jpg" alt="Scaun Cocoon Suspendat" class="w-full h-[200px] object-cover group-hover:scale-110 transition-transform duration-500">
-                    <div class="p-5">
-                        <h3 class="mb-2.5 text-xl font-semibold text-primary group-hover:text-accent-blue transition-colors">
+                <div class="flex-[0_0_260px] sm:flex-[0_0_280px] md:flex-[0_0_300px] bg-white rounded-xl overflow-hidden shadow-[0_5px_15px_rgba(0,0,0,0.1)] transition-all duration-300 relative snap-center hover:scale-105 hover:-translate-y-1 hover:shadow-[0_12px_25px_rgba(0,0,0,0.15)] shimmer-effect group" id="card-4">
+                    <img src="assets/catalog5.jpg" alt="Scaun Cocoon Suspendat" class="w-full h-[180px] sm:h-[200px] object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="p-4 sm:p-5">
+                        <h3 class="mb-2 sm:mb-2.5 text-lg sm:text-xl font-semibold text-primary group-hover:text-accent-blue transition-colors">
                             Set Terasa cu mese
                         </h3>
-                        <p class="text-gray-600 mb-3">
+                        <p class="text-gray-600 mb-2 sm:mb-3 text-sm sm:text-base">
                             Sanctuarul tău privat.
                         </p>
-                        <span class="block mt-4 font-bold text-accent text-xl">
+                        <span class="block mt-3 sm:mt-4 font-bold text-accent text-lg sm:text-xl">
                             8500 Lei
                         </span>
-                        <button class="w-full mt-4 px-4 py-2 bg-accent-blue text-white rounded-lg font-semibold hover:bg-accent transition-all duration-300 hover:shadow-lg active:scale-95">
+                        <button class="w-full mt-3 sm:mt-4 px-3 sm:px-4 py-2 text-sm sm:text-base bg-accent-blue text-white rounded-lg font-semibold hover:bg-accent transition-all duration-300 hover:shadow-lg active:scale-95">
                             Adaugă în Coș
                         </button>
                     </div>
                 </div>
 
                 <!-- Card 5 -->
-                <div class="flex-[0_0_300px] bg-white rounded-xl overflow-hidden shadow-[0_5px_15px_rgba(0,0,0,0.1)] transition-all duration-300 relative snap-center hover:scale-105 hover:-translate-y-1 hover:shadow-[0_12px_25px_rgba(0,0,0,0.15)] shimmer-effect group" id="card-5">
-                    <img src="assets/catalog6.jpg" alt="Set Patio" class="w-full h-[200px] object-cover group-hover:scale-110 transition-transform duration-500">
-                    <div class="p-5">
-                        <h3 class="mb-2.5 text-xl font-semibold text-primary group-hover:text-accent-blue transition-colors">
+                <div class="flex-[0_0_260px] sm:flex-[0_0_280px] md:flex-[0_0_300px] bg-white rounded-xl overflow-hidden shadow-[0_5px_15px_rgba(0,0,0,0.1)] transition-all duration-300 relative snap-center hover:scale-105 hover:-translate-y-1 hover:shadow-[0_12px_25px_rgba(0,0,0,0.15)] shimmer-effect group" id="card-5">
+                    <img src="assets/catalog6.jpg" alt="Set Patio" class="w-full h-[180px] sm:h-[200px] object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="p-4 sm:p-5">
+                        <h3 class="mb-2 sm:mb-2.5 text-lg sm:text-xl font-semibold text-primary group-hover:text-accent-blue transition-colors">
                             Scaun Terasă Chloe
                         </h3>
-                        <p class="text-gray-600 mb-3">
+                        <p class="text-gray-600 mb-2 sm:mb-3 text-sm sm:text-base">
                             Locul tău de relaxare după muncă.
                         </p>
-                        <span class="block mt-4 font-bold text-accent text-xl">
+                        <span class="block mt-3 sm:mt-4 font-bold text-accent text-lg sm:text-xl">
                             999 Lei
                         </span>
-                        <button class="w-full mt-4 px-4 py-2 bg-accent-blue text-white rounded-lg font-semibold hover:bg-accent transition-all duration-300 hover:shadow-lg active:scale-95">
+                        <button class="w-full mt-3 sm:mt-4 px-3 sm:px-4 py-2 text-sm sm:text-base bg-accent-blue text-white rounded-lg font-semibold hover:bg-accent transition-all duration-300 hover:shadow-lg active:scale-95">
                             Adaugă în Coș
                         </button>
                     </div>
@@ -345,7 +424,7 @@
             </div>
 
             <!-- Next Button -->
-            <a href="#card-1" class="bg-accent-blue text-white border-none rounded-full w-[50px] h-[50px] text-2xl cursor-pointer transition-all duration-300 flex-shrink-0 flex items-center justify-center hover:bg-accent hover:scale-110 active:scale-95 shadow-lg hover:shadow-xl">
+            <a href="#card-1" class="hidden sm:flex bg-accent-blue text-white border-none rounded-full w-[40px] h-[40px] md:w-[50px] md:h-[50px] text-xl md:text-2xl cursor-pointer transition-all duration-300 flex-shrink-0 items-center justify-center hover:bg-accent hover:scale-110 active:scale-95 shadow-lg hover:shadow-xl">
                 ❯
             </a>
         </div>
@@ -353,15 +432,15 @@
 </section>
 
 <!-- REVIEWS SECTION -->
-<section id="reviews" class="py-20">
-    <div class="max-w-[1100px] mx-auto px-5">
-        <h2 class="text-center text-4xl mb-12 text-primary relative pb-5 section-title-decoration">
+<section id="reviews" class="py-12 sm:py-16 md:py-20">
+    <div class="max-w-[1100px] mx-auto px-4 sm:px-5">
+        <h2 class="text-center text-2xl sm:text-3xl md:text-4xl mb-8 sm:mb-10 md:mb-12 text-primary relative pb-5 section-title-decoration">
             Povești ale Clienților
         </h2>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             <!-- Review 1 -->
-            <div class="bg-white p-8 rounded-lg text-center shadow-sm transition-all duration-300 border-l-4 border-l-transparent relative quote-mark hover:-translate-y-1 hover:shadow-lg hover:border-l-accent-blue group">
+            <div class="bg-white p-6 sm:p-8 rounded-lg text-center shadow-sm transition-all duration-300 border-l-4 border-l-transparent relative quote-mark hover:-translate-y-1 hover:shadow-lg hover:border-l-accent-blue group">
                 <p class="italic mb-5 text-gray-700 group-hover:text-gray-900 transition-colors">
                     "Scaunul Cocoon mi-a schimbat dimineața de duminică pentru totdeauna. Și livrarea a fost rapidă!"
                 </p>
@@ -391,13 +470,13 @@
 </section>
 
 <!-- CONTACT SECTION -->
-<section id="contact" class="py-20">
-    <div class="max-w-[1100px] mx-auto px-5">
-        <h2 class="text-center text-4xl mb-12 text-primary relative pb-5 section-title-decoration">
+<section id="contact" class="py-12 sm:py-16 md:py-20">
+    <div class="max-w-[1100px] mx-auto px-4 sm:px-5">
+        <h2 class="text-center text-2xl sm:text-3xl md:text-4xl mb-8 sm:mb-10 md:mb-12 text-primary relative pb-5 section-title-decoration">
             Contactează-ne
         </h2>
 
-        <div class="flex flex-wrap gap-10 justify-center">
+        <div class="flex flex-wrap gap-6 sm:gap-8 md:gap-10 justify-center">
             <!-- Contact Info -->
             <div class="flex-[1_1_400px]">
                 <p class="text-lg mb-8 text-primary font-medium">
@@ -481,8 +560,13 @@
 
 <!-- FOOTER -->
 <footer class="bg-primary text-white text-center py-5">
-    <p>&copy; 2026 ToToT. Proiectat pentru confort.</p>
+    <p class="text-sm sm:text-base">&copy; 2026 ToToT. Proiectat pentru confort.</p>
 </footer>
+
+<!-- MOBILE-ONLY Floating CTA Button -->
+<a href="#contact" class="mobile-only fixed bottom-20 left-1/2 transform -translate-x-1/2 z-[9998] bg-accent text-white px-6 py-3 rounded-full font-bold shadow-2xl text-sm flex items-center gap-2 animate-bounce hover:bg-[#219150] active:scale-95 transition-all duration-300">
+    📞 Contactează-ne Acum!
+</a>
 
 <!-- Mascot - Shopping Assistant -->
 <div class="mascot-container" id="mascot">
@@ -503,6 +587,33 @@
 </div>
 
 <script>
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    let menuOpen = false;
+
+    mobileMenuBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        menuOpen = !menuOpen;
+        if (menuOpen) {
+            mobileMenu.classList.add('active');
+            mobileMenuBtn.textContent = '✕';
+        } else {
+            mobileMenu.classList.remove('active');
+            mobileMenuBtn.textContent = '☰';
+        }
+    });
+
+    // Close mobile menu when clicking on a link
+    const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+    mobileMenuLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            mobileMenu.classList.remove('active');
+            mobileMenuBtn.textContent = '☰';
+            menuOpen = false;
+        });
+    });
+
     // Mascot click/tap functionality for mobile and desktop
     const mascot = document.getElementById('mascot');
     let messageVisible = false;
