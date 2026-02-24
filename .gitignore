@@ -1,8 +1,5 @@
-# Dependencies
+# Dependencies (optional - can delete node_modules if not using build process)
 node_modules/
-
-# Build output
-style.css
 
 # OS files
 .DS_Store
