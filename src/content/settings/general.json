@@ -1,0 +1,15 @@
+{
+  "logoText": "ToToT",
+  "navigation": [
+    { "text": "Home", "link": "#" },
+    { "text": "Products", "link": "#products" },
+    { "text": "Reviews", "link": "#reviews" },
+    { "text": "Contact", "link": "#contact" }
+  ],
+  "contact": {
+    "phone": "0 (60) 830-753",
+    "email": "avemToToT@gmail.com",
+    "address": "Strada Varnita 2/A, Chisinau, Moldova"
+  },
+  "footerText": "© 2026 ToToT. Proiectat pentru confort."
+}

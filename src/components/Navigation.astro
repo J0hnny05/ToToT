@@ -1,0 +1,78 @@
+---
+import settings from '../content/settings/general.json';
+---
+
+<nav class="bg-white shadow-md fixed w-full top-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <!-- Logo -->
+      <div class="flex-shrink-0">
+        <a href="#" class="text-2xl font-bold text-primary hover:text-accent transition-colors">
+          {settings.logoText}
+        </a>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden md:flex space-x-8">
+        {settings.navigation.map((item) => (
+          <a
+            href={item.link}
+            class="text-text-dark hover:text-accent transition-colors font-medium"
+          >
+            {item.text}
+          </a>
+        ))}
+      </div>
+
+      <!-- Sign Up Button & Cart -->
+      <div class="hidden md:flex items-center space-x-4">
+        <button class="bg-accent text-white px-6 py-2 rounded-lg hover:bg-opacity-90 transition-all">
+          Sign Up
+        </button>
+        <button class="relative">
+          <svg class="w-6 h-6 text-text-dark hover:text-accent transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg>
+          <span class="absolute -top-2 -right-2 bg-accent text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+            0
+          </span>
+        </button>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <div class="md:hidden">
+        <button id="mobile-menu-button" class="text-text-dark hover:text-accent">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+    <div class="px-2 pt-2 pb-3 space-y-1">
+      {settings.navigation.map((item) => (
+        <a
+          href={item.link}
+          class="block px-3 py-2 text-text-dark hover:text-accent hover:bg-bg-light rounded-md font-medium"
+        >
+          {item.text}
+        </a>
+      ))}
+      <button class="w-full bg-accent text-white px-6 py-2 rounded-lg hover:bg-opacity-90 transition-all mt-2">
+        Sign Up
+      </button>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  mobileMenuButton?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('hidden');
+  });
+</script>

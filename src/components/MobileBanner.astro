@@ -1,0 +1,9 @@
+---
+import bannerData from '../content/promotions/mobile-banner.json';
+---
+
+{bannerData.active && (
+  <div class="md:hidden bg-accent text-white py-3 px-4 text-center font-semibold text-sm animate-pulse">
+    {bannerData.text}
+  </div>
+)}

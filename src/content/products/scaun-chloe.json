@@ -1,0 +1,8 @@
+{
+  "title": "Scaun Terasă Chloe",
+  "description": "Locul tău de relaxare după muncă.",
+  "price": 999,
+  "image": "/src/assets/images/catalog6.jpg",
+  "order": 5,
+  "active": true
+}

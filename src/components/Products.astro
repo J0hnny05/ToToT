@@ -1,0 +1,105 @@
+---
+import { getCollection } from 'astro:content';
+
+const productsRaw = await getCollection('products');
+const products = productsRaw
+  .filter(p => p.data.active)
+  .sort((a, b) => a.data.order - b.data.order);
+---
+
+<section id="products" class="py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Section Title -->
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold text-primary mb-4">
+        Colecția Noastră
+      </h2>
+      <div class="w-24 h-1 bg-gradient-to-r from-accent to-accent-blue mx-auto rounded-full"></div>
+    </div>
+
+    <!-- Products Grid (Desktop) -->
+    <div class="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {products.map((product, index) => (
+        <div
+          id={`card-${index + 1}`}
+          class="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
+        >
+          <!-- Product Image -->
+          <div class="relative overflow-hidden h-64">
+            <img
+              src={product.data.image}
+              alt={product.data.title}
+              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-primary/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          </div>
+
+          <!-- Product Info -->
+          <div class="p-6">
+            <h3 class="text-2xl font-bold text-primary mb-3 group-hover:text-accent transition-colors">
+              {product.data.title}
+            </h3>
+            <p class="text-gray-600 mb-4 leading-relaxed">
+              {product.data.description}
+            </p>
+            <div class="flex items-center justify-between">
+              <span class="text-3xl font-bold text-accent">
+                {product.data.price} <span class="text-lg">Lei</span>
+              </span>
+              <button class="bg-accent-blue text-white px-4 py-2 rounded-lg hover:bg-accent transition-colors">
+                Adaugă
+              </button>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Products Carousel (Mobile) -->
+    <div class="md:hidden overflow-x-auto product-carousel hide-scrollbar flex gap-4 px-4 snap-x">
+      {products.map((product, index) => (
+        <div
+          id={`card-${index + 1}`}
+          class="flex-shrink-0 w-80 bg-white rounded-xl shadow-lg overflow-hidden snap-center"
+        >
+          <!-- Product Image -->
+          <div class="relative overflow-hidden h-48">
+            <img
+              src={product.data.image}
+              alt={product.data.title}
+              class="w-full h-full object-cover"
+            />
+          </div>
+
+          <!-- Product Info -->
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-primary mb-2">
+              {product.data.title}
+            </h3>
+            <p class="text-gray-600 mb-3 text-sm">
+              {product.data.description}
+            </p>
+            <div class="flex items-center justify-between">
+              <span class="text-2xl font-bold text-accent">
+                {product.data.price} <span class="text-sm">Lei</span>
+              </span>
+              <button class="bg-accent-blue text-white px-3 py-2 rounded-lg text-sm">
+                Adaugă
+              </button>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Carousel Navigation Dots (Mobile) -->
+    <div class="md:hidden flex justify-center gap-2 mt-6">
+      {products.map((_, index) => (
+        <a
+          href={`#card-${index + 1}`}
+          class="w-3 h-3 rounded-full bg-gray-300 hover:bg-accent transition-colors"
+        ></a>
+      ))}
+    </div>
+  </div>
+</section>
