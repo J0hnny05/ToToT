@@ -1,0 +1,102 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "src/assets/images"
+public_folder: "/src/assets/images"
+
+locale: "ro"
+
+collections:
+  # Products Collection - Fully Editable
+  - name: "products"
+    label: "Produse"
+    label_singular: "Produs"
+    folder: "src/content/products"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Nume Produs", name: "title", widget: "string" }
+      - { label: "Descriere", name: "description", widget: "text" }
+      - { label: "Preț (Lei)", name: "price", widget: "number", value_type: "int" }
+      - { label: "Imagine", name: "image", widget: "image" }
+      - { label: "Ordine Afișare", name: "order", widget: "number", value_type: "int", min: 1, default: 1 }
+      - { label: "Activ", name: "active", widget: "boolean", default: true }
+
+  # Reviews Collection - Fully Editable
+  - name: "reviews"
+    label: "Recenzii"
+    label_singular: "Recenzie"
+    folder: "src/content/reviews"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Nume Client", name: "customerName", widget: "string" }
+      - { label: "Recenzie", name: "reviewText", widget: "text" }
+      - { label: "Rating (1-5 stele)", name: "rating", widget: "select", options: ["1", "2", "3", "4", "5"], default: "5" }
+      - { label: "Ordine Afișare", name: "order", widget: "number", value_type: "int", min: 1, default: 1 }
+      - { label: "Activ", name: "active", widget: "boolean", default: true }
+
+  # Site Settings
+  - name: "settings"
+    label: "Setări Site"
+    files:
+      - name: "general"
+        label: "Setări Generale"
+        file: "src/content/settings/general.json"
+        fields:
+          - { label: "Logo Text", name: "logoText", widget: "string", default: "ToToT" }
+          - label: "Navigare"
+            name: "navigation"
+            widget: "list"
+            fields:
+              - { label: "Text", name: "text", widget: "string" }
+              - { label: "Link", name: "link", widget: "string" }
+          - label: "Contact"
+            name: "contact"
+            widget: "object"
+            fields:
+              - { label: "Telefon", name: "phone", widget: "string" }
+              - { label: "Email", name: "email", widget: "string" }
+              - { label: "Adresă", name: "address", widget: "text" }
+          - { label: "Text Footer", name: "footerText", widget: "string" }
+
+  # Hero Section
+  - name: "hero"
+    label: "Secțiune Hero"
+    files:
+      - name: "hero"
+        label: "Hero"
+        file: "src/content/hero/hero.json"
+        fields:
+          - { label: "Titlu Principal", name: "headline", widget: "string" }
+          - { label: "Subtitlu", name: "tagline", widget: "string" }
+          - { label: "Text Buton CTA", name: "ctaText", widget: "string" }
+          - { label: "Link Buton CTA", name: "ctaLink", widget: "string" }
+          - { label: "Imagine Fundal", name: "backgroundImage", widget: "image" }
+
+  # Promotions
+  - name: "promotions"
+    label: "Promoții"
+    files:
+      - name: "mobile-banner"
+        label: "Banner Mobil"
+        file: "src/content/promotions/mobile-banner.json"
+        fields:
+          - { label: "Text Banner", name: "text", widget: "string" }
+          - { label: "Activ", name: "active", widget: "boolean", default: true }
+
+  # Mascot Settings
+  - name: "mascot"
+    label: "Mascotă"
+    files:
+      - name: "mascot"
+        label: "Setări Mascotă"
+        file: "src/content/mascot/mascot.json"
+        fields:
+          - { label: "Nume Mascotă", name: "name", widget: "string", default: "Coco" }
+          - { label: "Emoji/Caracter", name: "character", widget: "string", default: "🪑" }
+          - { label: "Mesaj Tooltip", name: "tooltip", widget: "text" }
+          - { label: "Activ", name: "active", widget: "boolean", default: true }
