@@ -16,6 +16,8 @@ collections:
     create: true
     delete: true
     slug: "{{slug}}"
+    format: "json"
+    extension: "json"
     fields:
       - { label: "Nume Produs", name: "title", widget: "string" }
       - { label: "Descriere", name: "description", widget: "text" }
@@ -32,6 +34,8 @@ collections:
     create: true
     delete: true
     slug: "{{slug}}"
+    format: "json"
+    extension: "json"
     fields:
       - { label: "Nume Client", name: "customerName", widget: "string" }
       - { label: "Recenzie", name: "reviewText", widget: "text" }
