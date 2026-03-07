@@ -2,7 +2,7 @@
   "title": "Cocoonul Clasic",
   "description": "Terasă durabilă și rezistentă la intemperii pentru case moderne.",
   "price": 3000,
-  "image": "/src/assets/images/catalog1.jpg",
+  "image": "/images/catalog1.jpg",
   "order": 1,
   "active": true
 }

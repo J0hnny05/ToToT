@@ -2,7 +2,7 @@
   "title": "Cocoonul Îmbunătățit",
   "description": "Design ergonomic din plastic 100% reciclat.",
   "price": 4500,
-  "image": "/src/assets/images/catalog2.jpg",
+  "image": "/images/catalog2.jpg",
   "order": 2,
   "active": true
 }
